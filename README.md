@@ -25,7 +25,10 @@ O objetivo é representar a **linha do tempo da minha vida** utilizando conceito
 - **JavaScript (ES6)** → implementação da orientação a objetos e injeção dinâmica dos cards.
 
 ---
-## Preview do Resultado
+## Resultado:
 
 <img width="1294" height="851" alt="image" src="https://github.com/user-attachments/assets/93133987-8fe6-434c-a3cc-1920e99c9feb" />
+
+---
+## 🧑‍💻 Autor: Samuel Watthier Timmermann
 
