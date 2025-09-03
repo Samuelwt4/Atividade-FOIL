@@ -1,75 +1,122 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
-    padding: 20px;
+:root {
+    --primary-green: #4CAF50;
+    --accent-orange: #FF9800;
+    --bg-color: #f0f2f5;
+    --text-color: #444;
+    --card-bg: #fff;
+    --shadow-color: rgba(0,0,0,0.1);
+    --hover-shadow-color: rgba(0,0,0,0.15);
 }
 
-h1 {
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.main-title {
     text-align: center;
+    color: var(--accent-orange); 
     margin-bottom: 40px;
+    font-weight: 600;
 }
 
 .timeline {
     position: relative;
     max-width: 900px;
     margin: auto;
-    padding-top: 40px;    /* espaço extra no início */
-    padding-bottom: 40px; /* espaço extra no final */
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 .timeline::after {
     content: '';
     position: absolute;
-    width: 6px;
-    background-color: #333;
-    top: -20px;    /* linha começa acima do primeiro card */
-    bottom: -20px; /* linha termina abaixo do último card */
+    width: 4px;
+    background: var(--primary-green);
+    top: 0;
+    bottom: 0;
     left: 50%;
-    margin-left: -3px;
-    z-index: 0; /* linha atrás dos cards */
+    margin-left: -2px;
+    z-index: 0;
 }
 
 .container {
     padding: 10px 40px;
     position: relative;
     width: 50%;
-    z-index: 1; /* cards na frente da linha */
+    z-index: 1;
 }
 
 .container.left { 
     left: 0; 
-    padding-right: 60px; /* espaço da linha para o texto */
+    padding-right: 60px;
 }
 
 .container.right { 
     left: 50%; 
-    padding-left: 60px; /* espaço da linha para o texto */
+    padding-left: 60px;
 }
 
 .container::after {
     content: '';
     position: absolute;
-    width: 25px; 
-    height: 25px;
-    right: -17px;
-    background-color: white;
-    border: 4px solid #333;
-    top: 15px;
+    width: 20px; 
+    height: 20px;
+    background-color: var(--card-bg);
+    border: 3px solid var(--accent-orange);
+    top: 25px;
     border-radius: 50%;
     z-index: 1;
 }
 
-.container.right::after { left: -17px; }
+.container.right::after { 
+    left: -10px; 
+    border-color: var(--accent-orange);
+}
+.container.left::after {
+    right: -10px;
+    border-color: var(--accent-orange);
+}
 
 .content {
     padding: 20px;
-    background-color: white;
+    background-color: var(--card-bg);
     position: relative;
-    border-radius: 6px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease;
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(30px);
+}
+
+.content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px var(--hover-shadow-color);
+}
+
+.content h2 {
+    margin-top: 0;
+    color: var(--primary-green); 
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.content pre {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: inherit;
+    color: var(--text-color);
+    border: 1px solid #e0e0e0;
+}
+
+.past, .future { 
+    border-left: 5px solid var(--primary-green); 
 }
 
 .content.show {
@@ -77,12 +124,29 @@ h1 {
     transform: translateY(0);
 }
 
-.past { border-left: 5px solid #4CAF50; }
-.future { border-left: 5px solid #FF9800; }
+@media screen and (max-width: 768px) {
+    .timeline::after {
+        left: 31px;
+    }
+    
+    .container {
+        width: 100%;
+        padding-left: 60px;
+        padding-right: 10px;
+    }
 
-pre {
-    background-color: #eee;
-    padding: 10px;
-    border-radius: 4px;
-    overflow-x: auto;
+    .container.right {
+        left: 0%;
+    }
+
+    .container.left::after,
+    .container.right::after {
+        left: 20px;
+        right: auto;
+    }
+
+    .content.left,
+    .content.right {
+        transform: translateY(30px);
+    }
 }
